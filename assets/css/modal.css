@@ -144,9 +144,15 @@ main {
   margin-top: 0.5em;
   padding: 1em;
   color: #fff;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
+  border: none;
+}
+.message-sended {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .button:hover {
@@ -186,6 +192,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  
 }
 
 label {
@@ -217,21 +224,22 @@ input {
   margin-bottom: 7px;
   text-align: right;
   line-height: 0.3;
-  opacity: 0;
+  opacity: 1;
   transition: 0.3s;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
-.formData[data-error-visible="true"] .text-control {
+.error--bg {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
+
+.error {
     content: attr(data-error);
-    font-size: 0.4em;
+    font-size: 0.5em;
     color: red;
-} */
+    font-weight: 300;
+} 
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -516,7 +524,7 @@ footer {
     text-align: center;
   }
 }
-
+/* animation for modal */
 @keyframes modalopen {
   from {
     opacity: 0;
