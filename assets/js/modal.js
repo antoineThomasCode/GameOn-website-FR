@@ -13,7 +13,10 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeModalBtn = document.querySelectorAll(".close");
-
+const modalBody = document.querySelector('.modal-body');
+let formReserve = document.forms['reserve'];
+var validationMessage = document.createElement('p');
+var buttonClose = document.createElement("button");
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -70,6 +73,21 @@ function isInInterval(value) {
     return false;
   } return true;
 }
+//function at least one radio checked
+function atLeastOneCheck(input) {
+  for (var i = 0; i < input.length ; i++){
+    if (input[i].checked){
+      return true;
+    }
+  } return false;  
+}
+
+// function for accepting general condition
+function checkboxChecked(input) {
+  if (input.checked){
+    return true;
+  } return false;
+}
 // -- > check if at least on radio is selected 
 function isOneRadioChecked(input) {
   for (var i = 0; i < input.length ; i++){
@@ -78,18 +96,88 @@ function isOneRadioChecked(input) {
     }
   } return false;  
 }
-// --> controll if a radio is checked 
-function isChecked(input){
-  if (input.checked){
-    return true;
-  } return false;
-}
+
 
 // ** function to create ERROR container and display message inside  **//
-const createErrorContainer = (message) => {
+const createErrorMessage = (message) => {
   const errorMessage = document.createElement('div');
   errorMessage.className = "error";
   errorMessage.innerHTML = message;
   return errorMessage;
 }
 
+//** function for dipsplay error messages or sending datas in backend **/
+
+function validate(){
+  // field values recovery
+  let isErrors = false;
+  let firstName = formReserve['firstName'];
+  let lastName = formReserve['lastName'];
+  let email = formReserve['email'];
+  let age = formReserve['birthdate'];
+  let quantity = formReserve['quantity'];
+  let location = formReserve['location'];
+  let cgv = document.getElementById("cvg");
+  // delete error class 
+  document.querySelectorAll('.error').forEach(error => error.remove());
+  document.querySelectorAll('.error--bg').forEach(error => error.classList.remove('error--bg'));
+
+  if(!nameIsCorrect(firstName.value)){
+    isErrors = true;
+    firstName.classList.add('error--bg');
+    firstName.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer 2 caractères ou plus pour le prénom.'));
+  }
+  if(!nameIsCorrect(lastName.value)){
+    isErrors = true;
+    lastName.classList.add('error--bg');
+    lastName.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer 2 caractères ou plus pour le nom.'));
+  }
+  if(!emailIsCorrect(email.value)){
+    isErrors = true;
+    email.classList.add('error--bg');
+    email.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer une adresse mail valide.'));
+  }
+  if(!checkAge(age.value)){
+    isErrors = true;
+    age.classList.add('error--bg');
+    age.insertAdjacentElement('afterend', createErrorMessage('Vous devez avoir au moins 18 ans.'));
+  }
+  if(!isInInterval(quantity.value)){
+    isErrors = true;
+    quantity.classList.add('error--bg');
+    quantity.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer une valeur comprise entre 0 et 99.'));
+  }
+  if(!atLeastOneCheck(location)){
+    isErrors = true;
+    location[0].parentNode.classList.add('error--bg');
+    document.getElementsByClassName("formData")[5].insertAdjacentElement('afterend', createErrorMessage('Vous devez choisir au moins une ville.'));
+  }
+  if(!checkboxChecked(cgv)){
+    isErrors = true;
+    document.getElementsByClassName("checkbox2-label")[0].children[0].classList.add('error--bg');
+    document.getElementsByClassName("checkbox2-label")[0].insertAdjacentElement('afterend', createErrorMessage('Vous devez accepter les termes et conditions.'));
+  }
+  if(isErrors == true){
+  
+    return false;
+  } else {
+    let participant = {
+      firstname: firstName.value,
+      lastname: lastName.value,
+      email: email.value,
+      birthdate: age.value,
+      previousparticipations : quantity.value,
+      location: location.value
+    };
+ 
+    formReserve.style.display = 'none';
+    modalBody.classList.add('message-sended');
+    validationMessage.innerHTML='Merci, votre formulaire a bien été envoyé !';
+    modalBody.append(validationMessage);
+    buttonClose.classList.add('button','button:hover','button-close');
+    buttonClose.innerHTML = "Fermer";
+    modalBody.appendChild(buttonClose);
+    buttonClose.addEventListener ("click", closeModal);
+    return false;    
+  }
+}
