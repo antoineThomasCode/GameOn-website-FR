@@ -105,7 +105,11 @@ const createErrorMessage = (message) => {
   errorMessage.innerHTML = message;
   return errorMessage;
 }
-
+const displayErrorMessage = (input, errorMessage) => {
+  isErrors = true;
+  input.classList.add('error--bg');
+  input.insertAdjacentElement('afterend', createErrorMessage(`${errorMessage}`));
+}
 //** function for dipsplay error messages or sending datas in backend **/
 
 function validate(){
@@ -123,34 +127,24 @@ function validate(){
   document.querySelectorAll('.error--bg').forEach(error => error.classList.remove('error--bg'));
 
   if(!nameIsCorrect(firstName.value)){
-    isErrors = true;
-    firstName.classList.add('error--bg');
-    firstName.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer 2 caractères ou plus pour le prénom.'));
+    displayErrorMessage(firstName, 'Veuillez entrer 2 caractères ou plus pour le prénom.')
   }
   if(!nameIsCorrect(lastName.value)){
-    isErrors = true;
-    lastName.classList.add('error--bg');
-    lastName.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer 2 caractères ou plus pour le nom.'));
+    displayErrorMessage(lastName, 'Veuillez entrer 2 caractères ou plus pour le nom.')
   }
   if(!emailIsCorrect(email.value)){
-    isErrors = true;
-    email.classList.add('error--bg');
-    email.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer une adresse mail valide.'));
+    displayErrorMessage(email, 'Veuillez entrer une adresse mail valide.')
   }
   if(!checkAge(age.value)){
-    isErrors = true;
-    age.classList.add('error--bg');
-    age.insertAdjacentElement('afterend', createErrorMessage('Vous devez avoir au moins 18 ans.'));
+    displayErrorMessage(age, 'Vous devez avoir au moins 18 ans.')
   }
   if(!isInInterval(quantity.value)){
-    isErrors = true;
-    quantity.classList.add('error--bg');
-    quantity.insertAdjacentElement('afterend', createErrorMessage('Veuillez entrer une valeur comprise entre 0 et 99.'));
+    displayErrorMessage(quantity, 'Veuillez entrer une valeur comprise entre 0 et 99.')
   }
   if(!atLeastOneCheck(location)){
     isErrors = true;
     location[0].parentNode.classList.add('error--bg');
-    document.getElementsByClassName("formData")[5].insertAdjacentElement('afterend', createErrorMessage('Vous devez choisir au moins une ville.'));
+    document.getElementsByClassName("formData")[5].insertAdjacentElement('afterend', createErrorMessage());
   }
   if(!checkboxChecked(cgv)){
     isErrors = true;
