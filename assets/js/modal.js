@@ -14,7 +14,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeModalBtn = document.querySelectorAll(".close");
 const modalBody = document.querySelector('.modal-body');
-let formReserve = document.forms['reserve'];
+const formReserve = document.forms['reserve'];
 var validationMessage = document.createElement('p');
 var buttonClose = document.createElement("button");
 // launch modal event
@@ -88,14 +88,7 @@ function checkboxChecked(input) {
     return true;
   } return false;
 }
-// -- > check if at least on radio is selected 
-function isOneRadioChecked(input) {
-  for (var i = 0; i < input.length ; i++){
-    if (input[i].checked){
-      return true;
-    }
-  } return false;  
-}
+
 
 
 // ** function to create ERROR container and display message inside  **//
@@ -137,6 +130,7 @@ function validate(){
   }
   if(!checkAge(age.value)){
     displayErrorMessage(age, 'Vous devez avoir au moins 18 ans.')
+    isErrors = true; 
   }
   if(!isInInterval(quantity.value)){
     displayErrorMessage(quantity, 'Veuillez entrer une valeur comprise entre 0 et 99.')
@@ -144,18 +138,19 @@ function validate(){
   if(!atLeastOneCheck(location)){
     isErrors = true;
     location[0].parentNode.classList.add('error--bg');
-    document.getElementsByClassName("formData")[5].insertAdjacentElement('afterend', createErrorMessage());
+    document.getElementsByClassName("formData")[5].insertAdjacentElement('afterend', createErrorMessage('Veuillez sélctionner une ville'));
+   
   }
   if(!checkboxChecked(cgv)){
     isErrors = true;
     document.getElementsByClassName("checkbox2-label")[0].children[0].classList.add('error--bg');
     document.getElementsByClassName("checkbox2-label")[0].insertAdjacentElement('afterend', createErrorMessage('Vous devez accepter les termes et conditions.'));
+    
   }
-  if(isErrors == true){
-  
+  if(isErrors === true){
     return false;
   } else {
-    let participant = {
+    const participant = {
       firstname: firstName.value,
       lastname: lastName.value,
       email: email.value,
