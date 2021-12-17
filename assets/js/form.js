@@ -73,7 +73,7 @@ function validate(){
         const img2 = document.getElementById('img2')
         img1.style.display = 'none';
         img2.style.display = 'none'
-        object.setAttribute("src", "../assets/img/validation_ok.JPG")
+        object.setAttribute("src", "./assets/img/validation_ok.JPG")
         formReserve.style.display = 'none';
         modalBody.classList.add('message-sended');
         validationMessage.innerHTML='Une fois les élements validés, cette modal est créée et les éléments sont envoyés au Backend';
