@@ -10,7 +10,13 @@
 }
 
 /* Landing Page */
-
+.img-presentation {
+  margin-left: 15px;
+}
+.img-presentation > img {
+  height: 750px;
+  width: 530px;
+}
 body {
   margin: 0;
   display: flex;
@@ -183,7 +189,7 @@ main {
 .content {
   margin: 5% auto;
   width: 100%;
-  max-width: 500px;
+  
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -197,6 +203,7 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  display: flex;
   
 }
 
@@ -646,7 +653,7 @@ footer {
   
   }
   .hero-content {
-    padding: 200px 100px ;
+    padding: 100px 100px ;
     flex-basis: 70%;
     height: 700px;
     border-bottom-left-radius: 10px;

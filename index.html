@@ -18,11 +18,10 @@
       </div>
     <div class="main-navbar">
       
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
+      <a href="#" class="active"><span>Démo</span></a>
+      <a href="./pages/sommaire.html"><span>Sommaire</span></a>
+      <a href="./pages/etapes.html"><span>Étapes clés</span></a>
+      <a href="https://github.com/antoineThomasCode/GameOn-website-FR/blob/main/README.md"><span>Read Me</span></a>
       <a href="javascript:void(0);" class="icon" onclick="editNav()">
         <i class="fa fa-bars"></i>
       </a>
@@ -33,15 +32,14 @@
       <div class="hero-section">
         <div class="hero-content">
           <h1 class="hero-headline">
-            Marathon national <br>
-            de jeux vidéos
+            Projet N°4 :  <br>
+            Créez une landing page avec Javascript
           </h1>
           <p class="hero-text">
-            Vous aimez jouer ? Notre prochain évènement <br> gaming est ouvert
-            aux réservations... Places limitées !
+            Vous avez récemment été embauché comme développeur Front-End junior dans une PME, GameOn, spécialisée dans les conférences et les concours de jeux. Vous avez fait du shadowing de votre développeur principal, Erika, pour suivre son travail au quotidien.
           </p>
           <button class="btn-signup modal-btn">
-            je m'inscris
+            Les détails
           </button>
         </div>
         <div class="hero-img">
@@ -56,6 +54,9 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <div class="img-presentation" id="img2">
+              <img src="./assets/img/functions_for_validate_inputs.JPG" alt="">
+            </div>
             <form
               name="reserve"
               action="index.html"
@@ -202,16 +203,21 @@
                 class="btn-submit"
                 type="submit"
                 class="button"
-                value="C'est parti"
+                value="if validate() return true >"
               />
             </form>
+            <div class="img-presentation" id="img1">
+              <img src="./assets/img/validation_check.JPG" alt="">
+            </div>
           </div>
         </div>
       </div>
     </main>
     <footer>
       <p class="copyrights">
-        Copyright 2014 - 2020, GameOn Inc.
+        Copyright 2021, Antoine thomas <br>
+        parcours dev applications JavaScript / React <br>
+        OpenClassrooms 
       </p>
     </footer>
     <script src="assets/js/index.js"></script>
