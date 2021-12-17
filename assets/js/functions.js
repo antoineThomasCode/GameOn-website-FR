@@ -24,7 +24,7 @@ let age = 18;
 let myDate = new Date();
 myDate.setFullYear(yearOfBirth, monthOfBirth - 1, dayOfBirth);
 
-var currentDate = new Date();
+let currentDate = new Date();
 currentDate.setFullYear(currentDate.getFullYear() - age);
 if ((currentDate - myDate) < 0 || document.getElementById('birthdate').value == "" ) {
     return false;
@@ -40,7 +40,7 @@ return true;
 }
 //function at least one radio checked
 function atLeastOneCheck(input) {
-for (var i = 0; i < input.length ; i++){
+for (let i = 0; i < input.length ; i++){
     if (input[i].checked){
     return true;
     }
@@ -60,13 +60,13 @@ return false;
 
 // ** function to create ERROR container and display message inside  **//
 const createErrorMessage = (message) => {
-const errorMessage = document.createElement('div');
-errorMessage.className = "error";
-errorMessage.innerHTML = message;
-return errorMessage;
+    const errorMessage = document.createElement('div');
+    errorMessage.className = "error";
+    errorMessage.innerHTML = message;
+    return errorMessage;
 }
 const displayErrorMessage = (input, errorMessage) => {
-isErrors = true;
-input.classList.add('error--bg');
-input.insertAdjacentElement('afterend', createErrorMessage(`${errorMessage}`));
+    isErrors = true;
+    input.classList.add('error--bg');
+    input.insertAdjacentElement('afterend', createErrorMessage(`${errorMessage}`));
 }
