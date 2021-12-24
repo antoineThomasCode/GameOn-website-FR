@@ -66,7 +66,6 @@ const createErrorMessage = (message) => {
     return errorMessage;
 }
 const displayErrorMessage = (input, errorMessage) => {
-    isErrors = true;
     input.classList.add('error--bg');
     input.insertAdjacentElement('afterend', createErrorMessage(`${errorMessage}`));
 }

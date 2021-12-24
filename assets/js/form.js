@@ -22,12 +22,15 @@ function validate(){
     document.querySelectorAll('.error--bg').forEach(error => error.classList.remove('error--bg'));
 
     if(!nameIsCorrect(firstName.value)){
+        isErrors = true
         displayErrorMessage(firstName, 'Veuillez entrer 2 caractères ou plus pour le prénom.')
     }
     if(!nameIsCorrect(lastName.value)){
+        isErrors = true
         displayErrorMessage(lastName, 'Veuillez entrer 2 caractères ou plus pour le nom.')
     }
     if(!emailIsCorrect(email.value)){
+        isErrors = true
         displayErrorMessage(email, 'Veuillez entrer une adresse mail valide.')
     }
     if(!checkAge(age.value)){
@@ -35,6 +38,7 @@ function validate(){
         isErrors = true; 
     }
     if(!isInInterval(quantity.value)){
+        isErrors = true 
         displayErrorMessage(quantity, 'Veuillez entrer une valeur comprise entre 0 et 99.')
     }
     if(!atLeastOneCheck(location)){
